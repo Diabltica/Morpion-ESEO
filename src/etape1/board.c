@@ -20,18 +20,7 @@
  */
 static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastChangeX, Coordinate lastChangeY, GameResult *gameResult)
 {
-  // TODO: à compléter
-	//test every ligne and colomne to check one complete
-	for(int i = 1; i < 3; i++){
-		if(boardSquares[i][1] == boardSquares[lastChangeX][lastChangeY] && boardSquares[i][2] == boardSquares[lastChangeX][lastChangeY] && boardSquares[i][3] == boardSquares[lastChangeX][lastChangeY]){
-			return true;
-		}
-	}
-	for(int j = 1; j < 3; j++){
-		if(boardSquares[1][j] == boardSquares[lastChangeX][lastChangeY] && boardSquares[2][j] == boardSquares[lastChangeX][lastChangeY] && boardSquares[3][j] == boardSquares[lastChangeX][lastChangeY]){
-			return true;
-		}
-	}
+	
 
 
 
