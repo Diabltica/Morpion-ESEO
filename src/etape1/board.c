@@ -1,5 +1,5 @@
 #include "board.h"
-#include <bool.h>
+#include <stdbool.h>
 #include <assert.h>
 
 /**
@@ -12,15 +12,46 @@
  * @param [out] gameResult the winning status if the game has ended (value is not set if
  * the game is not finished)
  *
- * @pre lastChangeX must be in [0..2]
- * @pre lastChangeY must be in [0..2]
+ * @pre lastChangeX must be in [0..1]
+ * @pre lastChangeY must be in [0..1]
  * @pre gameResult must point on an allocated GameResult variable
  *
  * @return a boolean that tells if the game is finished
  */
 static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastChangeX, Coordinate lastChangeY, GameResult *gameResult)
 {
-	
+	bool win = false;
+	// look at the diagonale, ligne and colomne of the last change to check a win condition
+	if(boardSquares[lastChangeX][0] == boardSquares[lastChangeX][1] == boardSquares[lastChangeX][2]){
+		win = true;
+	}
+	else if(boardSquares[0][lastChangeY] == boardSquares[1][lastChangeY] == boardSquares[2][lastChangeY]){
+		win = true;
+	}
+	else if(lastChangeX == lastChangeY){
+		if(boardSquares[0][0] == boardSquares[1][1] == boardSquares[2][2]){
+			win = true;
+		}
+	}
+	else if(lastChangeX + lastChangeY == 2){
+		if(boardSquares[0][2] == boardSquares[1][1] == boardSquares[2][0]){
+			win = true;
+		}
+	}
+
+	if(win == true){
+		switch(boardSquares[lastChangeX][lastChangeY]){
+			case CROSS:
+				*gameResult = CROSS_WINS;
+			case CIRCLE:
+				*gameResult = CIRCLE_WINS;
+			default:
+				*gameResult = NONE;
+		}
+	}else{
+		*gameResult = DRAW;
+	}
+
 
 
 
