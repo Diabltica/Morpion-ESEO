@@ -8,6 +8,6 @@
 #if !defined TEST_CHECKENDOFGAME_H_
 #define TEST_CHECKENDOFGAME_H_
 
-extern void test_CheckEndOfGame (void);
+extern void testCheckEndOfGame (void);
 
 #endif /* !defined TEST_CHECKENDOFGAME_H_ */
