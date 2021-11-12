@@ -2,3 +2,4 @@
 .idea/
 /src/etape1/Doxyfile
 /src/etape1/doxygen/
+.clang-format
