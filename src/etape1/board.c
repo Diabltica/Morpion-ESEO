@@ -34,17 +34,17 @@ void Board_free()
 
 PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece)
 {
-	if (Board_getSquareContent(x, y) == NONE)
-	{
-		SquareChangeCallback(x, y, kindOfPiece);
+	PutPieceResult Is_empty;
+
+	if (Board_getSquareContent(x, y) == NONE) {
+		//		SquareChangeCallback(x, y, kindOfPiece);
 		if (isGameFinished(boardSquares, x, y, &gameResult) == true)
-			EndOfGameCallback(&gameResult);
-		return PIECE_IN_PLACE;
+			//			EndOfGameCallback(&gameResult);
+			Is_empty = PIECE_IN_PLACE;
+	} else {
+		Is_empty = SQUARE_IS_NOT_EMPTY;
 	}
-	else
-	{
-		return SQUARE_IS_NOT_EMPTY;
-	}
+	return Is_empty;
 }
 
 PieceType Board_getSquareContent(Coordinate x, Coordinate y)
