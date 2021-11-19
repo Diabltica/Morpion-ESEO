@@ -20,33 +20,33 @@
  */
 static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastChangeX, Coordinate lastChangeY, GameResult *gameResult)
 {
-	bool win = false;
+	bool gameFinished = false;
 	// look at the diagonale, ligne and colomne of the last change to check a win condition
 	if(boardSquares[lastChangeX][0] == boardSquares[lastChangeX][1] == boardSquares[lastChangeX][2]){
-		win = true;
+		gameFinished = true;
 	}
 	else if(boardSquares[0][lastChangeY] == boardSquares[1][lastChangeY] == boardSquares[2][lastChangeY]){
-		win = true;
+		gameFinished = true;
 	}
 	else if(lastChangeX == lastChangeY){
 		if(boardSquares[0][0] == boardSquares[1][1] == boardSquares[2][2]){
-			win = true;
+			gameFinished = true;
 		}
 	}
 	else if(lastChangeX + lastChangeY == 2){
 		if(boardSquares[0][2] == boardSquares[1][1] == boardSquares[2][0]){
-			win = true;
+			gameFinished = true;
 		}
 	}
 
-	if(win == true){
+	if(gameFinished == true){
 		switch(boardSquares[lastChangeX][lastChangeY]){
 			case CROSS:
 				*gameResult = CROSS_WINS;
 				return true;
 			case CIRCLE:
 				*gameResult = CIRCLE_WINS;
-				return true
+				return true;
 			default:
 				*gameResult = DRAW;
 				return true;
