@@ -43,13 +43,17 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
 		switch(boardSquares[lastChangeX][lastChangeY]){
 			case CROSS:
 				*gameResult = CROSS_WINS;
+				return true;
 			case CIRCLE:
 				*gameResult = CIRCLE_WINS;
+				return true
 			default:
-				*gameResult = NONE;
+				*gameResult = DRAW;
+				return true;
 		}
 	}else{
 		*gameResult = DRAW;
+		return false;
 	}
 
 
