@@ -1,7 +1,7 @@
 #include "board.h"
-#include <stdbool.h>
 #include <assert.h>
-
+#include <stdbool.h>
+#include <stdio.h>
 /**
  * Check if the game has to be ended. Only alignment from the last
  * modified square are checked.
@@ -18,47 +18,45 @@
  *
  * @return a boolean that tells if the game is finished
  */
-static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastChangeX, Coordinate lastChangeY, GameResult *gameResult)
+static bool isGameFinished(const PieceType boardSquares[3][3], Coordinate lastChangeX, Coordinate lastChangeY, GameResult *gameResult)
 {
 	bool gameFinished = false;
 	// look at the diagonale, ligne and colomne of the last change to check a win condition
-	if(boardSquares[lastChangeX][0] == boardSquares[lastChangeX][1] && boardSquares[lastChangeX][1] == boardSquares[lastChangeX][2]){
+	if (boardSquares[lastChangeX][0] == boardSquares[lastChangeX][1] && boardSquares[lastChangeX][1] == boardSquares[lastChangeX][2] && boardSquares[lastChangeX][2] != NONE) {
 		gameFinished = true;
 	}
-	else if(boardSquares[0][lastChangeY] == boardSquares[1][lastChangeY] && boardSquares[1][lastChangeY] == boardSquares[2][lastChangeY]){
+	if (boardSquares[0][lastChangeY] == boardSquares[1][lastChangeY] && boardSquares[1][lastChangeY] == boardSquares[2][lastChangeY] && boardSquares[2][lastChangeY] != NONE) {
 		gameFinished = true;
 	}
-	else if(lastChangeX == lastChangeY){
-		if(boardSquares[0][0] == boardSquares[1][1] == boardSquares[2][2]){
+	if (lastChangeX == lastChangeY) {
+		if (boardSquares[0][0] == boardSquares[1][1] && boardSquares[1][1] == boardSquares[2][2] && boardSquares[2][2] != NONE) {
 			gameFinished = true;
 		}
 	}
-	else if(lastChangeX + lastChangeY == 2){
-		if(boardSquares[0][2] == boardSquares[1][1] == boardSquares[2][0]){
+	if (lastChangeX + lastChangeY == 2) {
+		if (boardSquares[0][2] == boardSquares[1][1] && boardSquares[1][1] == boardSquares[2][0] && boardSquares[2][0] != NONE) {
 			gameFinished = true;
 		}
 	}
 
-	if(gameFinished == true){
-		switch(boardSquares[lastChangeX][lastChangeY]){
+	if (gameFinished == true) {
+		switch (boardSquares[lastChangeX][lastChangeY]) {
 			case CROSS:
 				*gameResult = CROSS_WINS;
+				printf("Cross wins\n");
 				return true;
 			case CIRCLE:
 				*gameResult = CIRCLE_WINS;
+				printf("Circle wins\n");
 				return true;
 			default:
 				*gameResult = DRAW;
 				return true;
 		}
-	}else{
+	} else {
 		*gameResult = DRAW;
 		return false;
 	}
-
-
-
-
 }
 
 // void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
