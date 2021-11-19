@@ -22,10 +22,10 @@ static bool isGameFinished (const PieceType boardSquares[3][3], Coordinate lastC
 {
 	bool gameFinished = false;
 	// look at the diagonale, ligne and colomne of the last change to check a win condition
-	if(boardSquares[lastChangeX][0] == boardSquares[lastChangeX][1] == boardSquares[lastChangeX][2]){
+	if((boardSquares[lastChangeX][0] == boardSquares[lastChangeX][1]) == boardSquares[lastChangeX][2]){
 		gameFinished = true;
 	}
-	else if(boardSquares[0][lastChangeY] == boardSquares[1][lastChangeY] == boardSquares[2][lastChangeY]){
+	else if((boardSquares[0][lastChangeY] == boardSquares[1][lastChangeY]) == boardSquares[2][lastChangeY]){
 		gameFinished = true;
 	}
 	else if(lastChangeX == lastChangeY){
