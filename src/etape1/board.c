@@ -22,32 +22,31 @@ GameResult gameResult;
  */
 static bool isGameFinished(const PieceType boardSquares[3][3],
                            Coordinate lastChangeX, Coordinate lastChangeY,
-                           GameResult *gameResult)
-{
-	// TODO: à compléter
+                           GameResult *gameResult) {
+  // TODO: à compléter
 }
 
-void Board_free()
-{
-	// TODO: à compléter
+void Board_free() {
+  // TODO: à compléter
 }
 
-PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece)
-{
-	PutPieceResult Is_empty;
+PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece,
+                              SquareChangeCallback squareCallback,
+                              EndOfGameCallback endCallback) {
+  PutPieceResult Is_empty;
 
-	if (Board_getSquareContent(x, y) == NONE) {
-		//		SquareChangeCallback(x, y, kindOfPiece);
-		if (isGameFinished(boardSquares, x, y, &gameResult) == true)
-			//			EndOfGameCallback(&gameResult);
-			Is_empty = PIECE_IN_PLACE;
-	} else {
-		Is_empty = SQUARE_IS_NOT_EMPTY;
-	}
-	return Is_empty;
+  if (Board_getSquareContent(x, y) == NONE) {
+    squareCallback(x, y, kindOfPiece);
+    boardSquares[y][x] = kindOfPiece;
+    if (isGameFinished(boardSquares, x, y, &gameResult))
+      endCallback(&gameResult);
+    Is_empty = PIECE_IN_PLACE;
+  } else {
+    Is_empty = SQUARE_IS_NOT_EMPTY;
+  }
+  return Is_empty;
 }
 
-PieceType Board_getSquareContent(Coordinate x, Coordinate y)
-{
-	return boardSquares[x][y];
+PieceType Board_getSquareContent(Coordinate x, Coordinate y) {
+  return boardSquares[y][x];
 }
