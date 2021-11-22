@@ -39,7 +39,7 @@ PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece,
     squareCallback(x, y, kindOfPiece);
     boardSquares[y][x] = kindOfPiece;
     if (isGameFinished(boardSquares, x, y, &gameResult))
-      endCallback(&gameResult);
+      endCallback(gameResult);
     Is_empty = PIECE_IN_PLACE;
   } else {
     Is_empty = SQUARE_IS_NOT_EMPTY;
