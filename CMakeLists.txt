@@ -1,4 +1,5 @@
-# cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.20)
+
 project(Morpion_ESEO C)
 
 set(CMAKE_C_STANDARD 11)
@@ -19,7 +20,8 @@ add_executable(Morpion_ESEO
                src/etape1/tictactoe_errors.h
                src/etape1/tictactoe_erros.c)#Comment to run unit test
 
-# add_executable(Morpio_ESEO
+
+#add_executable(Morpio_ESEO
 #               src/etape1/board.c
 #               src/test_tictactoe/main.c
 #               src/test_tictactoe/test_CheckEndOfGame.c
