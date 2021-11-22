@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
+
 project(Morpion_ESEO C)
 
 set(CMAKE_C_STANDARD 11)
@@ -7,6 +8,7 @@ include_directories(src/etape1
                     src/test_tictactoe)
 
 add_executable(Morpion_ESEO
+
         src/etape1/board.c
         src/etape1/board.h
         src/etape1/board_view.h
@@ -21,8 +23,10 @@ add_executable(Morpion_ESEO
 
 #Uncomment to run unit test
 
+
 #add_executable(Morpio_ESEO
 #               src/etape1/board.c
 #               src/test_tictactoe/main.c
 #               src/test_tictactoe/test_CheckEndOfGame.c
-#               src/test_tictactoe/test_CheckEndOfGame.h)
+#               src/test_tictactoe/test_CheckEndOfGame.h)#Uncomment to run unit test
+
