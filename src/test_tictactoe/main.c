@@ -1,3 +1,4 @@
+
 /**
  * @file main.c
  *
@@ -5,11 +6,11 @@
  * @author jilias
  */
 
-#include "test_checkEndOfGame.h"
+#include "test_CheckEndOfGame.h"
 
 int main (void)
 {
-	test_CheckEndOfGame ();
+	testCheckEndOfGame ();
 
 	return 0;
 }

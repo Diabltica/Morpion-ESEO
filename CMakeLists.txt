@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
+
 project(Morpion_ESEO C)
 
 set(CMAKE_C_STANDARD 11)
@@ -24,3 +25,4 @@ add_executable(Morpion_ESEO
 #               src/test_tictactoe/main.c
 #               src/test_tictactoe/test_CheckEndOfGame.c
 #               src/test_tictactoe/test_CheckEndOfGame.h)#Uncomment to run unit test
+
