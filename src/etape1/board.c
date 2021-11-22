@@ -1,5 +1,6 @@
 #include "board.h"
 #include <stdbool.h>
+#include <stdio.h>
 /**
  * Check if the game has to be ended. Only alignment from the last
  * modified square are checked.
@@ -38,14 +39,15 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 	}
 
 	// look at the diagonale, ligne and colomne of the last change to check a win condition
-	if (boardSquares[lastChangeX][0] == boardSquares[lastChangeX][1] &&
-	    boardSquares[lastChangeX][1] == boardSquares[lastChangeX][2] && 
-	    boardSquares[lastChangeX][2] != NONE) {
+	if (boardSquares[lastChangeY][0] == boardSquares[lastChangeY][1] &&
+	    boardSquares[lastChangeY][1] == boardSquares[lastChangeY][2] &&
+	    boardSquares[lastChangeY][2] != NONE) {
 		gameFinished = true;
+//		printf("Hola");
 	}
-	if (boardSquares[0][lastChangeY] == boardSquares[1][lastChangeY] &&
-	    boardSquares[1][lastChangeY] == boardSquares[2][lastChangeY] &&
-	    boardSquares[2][lastChangeY] != NONE) {
+	if (boardSquares[0][lastChangeX] == boardSquares[1][lastChangeX] &&
+	    boardSquares[1][lastChangeX] == boardSquares[2][lastChangeX] &&
+	    boardSquares[2][lastChangeX] != NONE) {
 		gameFinished = true;
 	}
 	if (lastChangeX == lastChangeY) {
@@ -63,7 +65,7 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 		}
 	}
 	if (gameFinished) {
-		switch (boardSquares[lastChangeX][lastChangeY]) {
+		switch (boardSquares[lastChangeY][lastChangeX]) {
 			case CROSS:
 				*gameResult = CROSS_WINS;
 				break;
