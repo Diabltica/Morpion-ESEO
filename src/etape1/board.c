@@ -1,7 +1,5 @@
 #include "board.h"
-#include <assert.h>
 #include <stdbool.h>
-#include <stdio.h>
 /**
  * Check if the game has to be ended. Only alignment from the last
  * modified square are checked.
@@ -23,10 +21,25 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
                            GameResult *gameResult)
 {
 	bool gameFinished = false;
+	//check if the board is full
+	bool stop = false;
+	for (int i = 0; (i < 3) && !stop; i++)
+	{
+		for (int j = 0; (j < 3) && !stop; j++)
+		{
+			if (boardSquares[i][j] == NONE){
+				stop = true;
+			}
+		}
+	}
+	if (!stop){
+		*gameResult = DRAW;
+		return true;
+	}
 
 	// look at the diagonale, ligne and colomne of the last change to check a win condition
 	if (boardSquares[lastChangeX][0] == boardSquares[lastChangeX][1] &&
-	    boardSquares[lastChangeX][1] == boardSquares[lastChangeX][2] &&
+	    boardSquares[lastChangeX][1] == boardSquares[lastChangeX][2] && 
 	    boardSquares[lastChangeX][2] != NONE) {
 		gameFinished = true;
 	}
@@ -49,7 +62,6 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 			gameFinished = true;
 		}
 	}
-
 	if (gameFinished) {
 		switch (boardSquares[lastChangeX][lastChangeY]) {
 			case CROSS:
