@@ -21,50 +21,34 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
                            Coordinate lastChangeX, Coordinate lastChangeY,
                            GameResult *gameResult)
 {
-	bool gameFinished = false;
+
 	//check if the board is full
 	bool stop = false;
-	for (int i = 0; (i < 3) && !stop; i++)
-	{
-		for (int j = 0; (j < 3) && !stop; j++)
-		{
-			if (boardSquares[i][j] == NONE){
-				stop = true;
-			}
+	for (int i = 0; (i < 3) && !stop; i++) {
+		for (int j = 0; (j < 3) && !stop; j++) {
+			if (boardSquares[i][j] == NONE) { stop = true; }
 		}
 	}
-	if (!stop){
+	if (!stop) {
 		*gameResult = DRAW;
 		return true;
 	}
 
 	// look at the diagonale, ligne and colomne of the last change to check a win condition
 	if (boardSquares[lastChangeY][0] == boardSquares[lastChangeY][1] &&
-	    boardSquares[lastChangeY][1] == boardSquares[lastChangeY][2] &&
-	    boardSquares[lastChangeY][2] != NONE) {
-		gameFinished = true;
-//		printf("Hola");
-	}
-	if (boardSquares[0][lastChangeX] == boardSquares[1][lastChangeX] &&
-	    boardSquares[1][lastChangeX] == boardSquares[2][lastChangeX] &&
-	    boardSquares[2][lastChangeX] != NONE) {
-		gameFinished = true;
-	}
-	if (lastChangeX == lastChangeY) {
-		if (boardSquares[0][0] == boardSquares[1][1] &&
-		    boardSquares[1][1] == boardSquares[2][2] &&
-		    boardSquares[2][2] != NONE) {
-			gameFinished = true;
-		}
-	}
-	if (lastChangeX + lastChangeY == 2) {
-		if (boardSquares[0][2] == boardSquares[1][1] &&
-		    boardSquares[1][1] == boardSquares[2][0] &&
-		    boardSquares[2][0] != NONE) {
-			gameFinished = true;
-		}
-	}
-	if (gameFinished) {
+	            boardSquares[lastChangeY][1] == boardSquares[lastChangeY][2] &&
+	            boardSquares[lastChangeY][2] != NONE ||
+	    boardSquares[0][lastChangeX] == boardSquares[1][lastChangeX] &&
+	            boardSquares[1][lastChangeX] == boardSquares[2][lastChangeX] &&
+	            boardSquares[2][lastChangeX] != NONE ||
+	    lastChangeX == lastChangeY &&
+	            boardSquares[0][0] == boardSquares[1][1] &&
+	            boardSquares[1][1] == boardSquares[2][2] &&
+	            boardSquares[2][2] != NONE ||
+	    lastChangeX + lastChangeY == 2 &&
+	            boardSquares[0][2] == boardSquares[1][1] &&
+	            boardSquares[1][1] == boardSquares[2][0] &&
+	            boardSquares[2][0] != NONE) {
 		switch (boardSquares[lastChangeY][lastChangeX]) {
 			case CROSS:
 				*gameResult = CROSS_WINS;
