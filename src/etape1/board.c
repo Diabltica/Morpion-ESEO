@@ -18,41 +18,51 @@
  *
  * @return a boolean that tells if the game is finished
  */
-static bool isGameFinished(const PieceType boardSquares[3][3], Coordinate lastChangeX, Coordinate lastChangeY, GameResult *gameResult)
+static bool isGameFinished(const PieceType boardSquares[3][3],
+                           Coordinate lastChangeX, Coordinate lastChangeY,
+                           GameResult *gameResult)
 {
 	bool gameFinished = false;
+
 	// look at the diagonale, ligne and colomne of the last change to check a win condition
-	if (boardSquares[lastChangeX][0] == boardSquares[lastChangeX][1] && boardSquares[lastChangeX][1] == boardSquares[lastChangeX][2] && boardSquares[lastChangeX][2] != NONE) {
+	if (boardSquares[lastChangeX][0] == boardSquares[lastChangeX][1] &&
+	    boardSquares[lastChangeX][1] == boardSquares[lastChangeX][2] &&
+	    boardSquares[lastChangeX][2] != NONE) {
 		gameFinished = true;
 	}
-	if (boardSquares[0][lastChangeY] == boardSquares[1][lastChangeY] && boardSquares[1][lastChangeY] == boardSquares[2][lastChangeY] && boardSquares[2][lastChangeY] != NONE) {
+	if (boardSquares[0][lastChangeY] == boardSquares[1][lastChangeY] &&
+	    boardSquares[1][lastChangeY] == boardSquares[2][lastChangeY] &&
+	    boardSquares[2][lastChangeY] != NONE) {
 		gameFinished = true;
 	}
 	if (lastChangeX == lastChangeY) {
-		if (boardSquares[0][0] == boardSquares[1][1] && boardSquares[1][1] == boardSquares[2][2] && boardSquares[2][2] != NONE) {
+		if (boardSquares[0][0] == boardSquares[1][1] &&
+		    boardSquares[1][1] == boardSquares[2][2] &&
+		    boardSquares[2][2] != NONE) {
 			gameFinished = true;
 		}
 	}
 	if (lastChangeX + lastChangeY == 2) {
-		if (boardSquares[0][2] == boardSquares[1][1] && boardSquares[1][1] == boardSquares[2][0] && boardSquares[2][0] != NONE) {
+		if (boardSquares[0][2] == boardSquares[1][1] &&
+		    boardSquares[1][1] == boardSquares[2][0] &&
+		    boardSquares[2][0] != NONE) {
 			gameFinished = true;
 		}
 	}
 
-	if (gameFinished == true) {
+	if (gameFinished) {
 		switch (boardSquares[lastChangeX][lastChangeY]) {
 			case CROSS:
 				*gameResult = CROSS_WINS;
-				printf("Cross wins\n");
-				return true;
+				break;
 			case CIRCLE:
 				*gameResult = CIRCLE_WINS;
-				printf("Circle wins\n");
-				return true;
+				break;
 			default:
 				*gameResult = DRAW;
-				return true;
+				break;
 		}
+		return true;
 	} else {
 		*gameResult = DRAW;
 		return false;
