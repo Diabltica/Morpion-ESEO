@@ -1,4 +1,5 @@
 #include "board.h"
+#include <gif_lib.h>
 #include <stdbool.h>
 PieceType boardSquares[3][3];
 GameResult gameResult;
@@ -71,14 +72,19 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 	}
 }
 
-// void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
-// {
-//   // TODO: à compléter
-// }
+ void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
+ {
+	 (*onSquareChange)(0, 0, NULL);
+	 (*onEndOfGame)(DRAW);
+ }
 
 // void Board_free ()
 // {
-//   // TODO: à compléter
+//	 for (int i = 0; i < 3; ++i) {
+//		 for (int j = 0; j < 3; ++j) {
+//			 boardSquares[i][j] = NULL;
+//		 }
+//	 }
 // }
 
 PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece,
