@@ -102,9 +102,7 @@ extern void Board_free();
  * already one
  */
 extern PutPieceResult Board_putPiece(Coordinate x, Coordinate y,
-                                     PieceType kindOfPiece,
-                                     SquareChangeCallback squareCallback,
-                                     EndOfGameCallback endCallback);
+                                     PieceType kindOfPiece);
 
 /**
  * Gives the content of a square

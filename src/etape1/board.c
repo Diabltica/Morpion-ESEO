@@ -23,7 +23,7 @@ GameResult boardGameResult;
  *
  * @pre lastChangeX must be in [0..1]
  * @pre lastChangeY must be in [0..1]
- * @pre gameResult must point on an allocated GameResult variable
+ * @pre boardGameResult must point on an allocated GameResult variable
  *
  * @return a boolean that tells if the game is finished
  *
@@ -35,6 +35,7 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 
 	//check if the board is full
 	bool stop = false;
+
 	for (int i = 0; (i < LIGNES) && !stop; i++) {
 		for (int j = 0; (j < COLONNES) && !stop; j++) {
 			if (boardSquares[i][j] == NONE) { stop = true; }
@@ -78,6 +79,7 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 	}
 }
 
+
 void Board_init(SquareChangeCallback onSquareChange,
                 EndOfGameCallback onEndOfGame)
 {
@@ -104,10 +106,10 @@ PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece,
 	PutPieceResult Is_empty;
 
 	if (Board_getSquareContent(x, y) == NONE) {
-		squareCallback(x, y, kindOfPiece);
 		boardSquares[y][x] = kindOfPiece;
+		boardOnSquareChange(x, y, kindOfPiece);
 		if (isGameFinished(boardSquares, x, y, &boardGameResult))
-			endCallback(boardGameResult);
+			boardOnEndOfGame(boardGameResult);
 		Is_empty = PIECE_IN_PLACE;
 	} else {
 		Is_empty = SQUARE_IS_NOT_EMPTY;
