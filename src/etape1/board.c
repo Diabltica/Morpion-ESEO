@@ -1,7 +1,14 @@
 #include "board.h"
+#include <gif_lib.h>
 #include <stdbool.h>
-PieceType boardSquares[3][3];
-GameResult gameResult;
+
+#define LIGNES 3
+#define COLONNES 3
+
+PieceType boardSquares[LIGNES][COLONNES];
+SquareChangeCallback boardOnSquareChange;
+EndOfGameCallback boardOnEndOfGame;
+GameResult boardGameResult;
 
 
 /**
@@ -28,8 +35,8 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 
 	//check if the board is full
 	bool stop = false;
-	for (int i = 0; (i < 3) && !stop; i++) {
-		for (int j = 0; (j < 3) && !stop; j++) {
+	for (int i = 0; (i < LIGNES) && !stop; i++) {
+		for (int j = 0; (j < COLONNES) && !stop; j++) {
 			if (boardSquares[i][j] == NONE) { stop = true; }
 		}
 	}
@@ -71,33 +78,44 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 	}
 }
 
-// void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
-// {
-//   // TODO: à compléter
-// }
+void Board_init(SquareChangeCallback onSquareChange,
+                EndOfGameCallback onEndOfGame)
+{
+	for (int i = 0; i < LIGNES; ++i) {
+		for (int j = 0; j < COLONNES; ++j) { boardSquares[i][j] = NONE; }
+	}
+	boardOnSquareChange = onSquareChange;
+	boardOnEndOfGame = onEndOfGame;
+}
 
 // void Board_free ()
 // {
-//   // TODO: à compléter
+//	 for (int i = 0; i < 3; ++i) {
+//		 for (int j = 0; j < 3; ++j) {
+//			 boardSquares[i][j] = NULL;
+//		 }
+//	 }
 // }
 
 PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece,
                               SquareChangeCallback squareCallback,
-                              EndOfGameCallback endCallback) {
-  PutPieceResult Is_empty;
+                              EndOfGameCallback endCallback)
+{
+	PutPieceResult Is_empty;
 
-  if (Board_getSquareContent(x, y) == NONE) {
-    squareCallback(x, y, kindOfPiece);
-    boardSquares[y][x] = kindOfPiece;
-    if (isGameFinished(boardSquares, x, y, &gameResult))
-      endCallback(gameResult);
-    Is_empty = PIECE_IN_PLACE;
-  } else {
-    Is_empty = SQUARE_IS_NOT_EMPTY;
-  }
-  return Is_empty;
+	if (Board_getSquareContent(x, y) == NONE) {
+		squareCallback(x, y, kindOfPiece);
+		boardSquares[y][x] = kindOfPiece;
+		if (isGameFinished(boardSquares, x, y, &boardGameResult))
+			endCallback(boardGameResult);
+		Is_empty = PIECE_IN_PLACE;
+	} else {
+		Is_empty = SQUARE_IS_NOT_EMPTY;
+	}
+	return Is_empty;
 }
 
-PieceType Board_getSquareContent(Coordinate x, Coordinate y) {
-  return boardSquares[y][x];
+PieceType Board_getSquareContent(Coordinate x, Coordinate y)
+{
+	return boardSquares[y][x];
 }
