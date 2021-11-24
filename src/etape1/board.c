@@ -1,7 +1,10 @@
 #include "board.h"
 #include <stdbool.h>
+
 PieceType boardSquares[3][3];
-GameResult gameResult;
+SquareChangeCallback boardOnSquareChange;
+EndOfGameCallback boardOnEndOfGame;
+GameResult boardGameResult;
 
 
 /**
@@ -16,7 +19,7 @@ GameResult gameResult;
  *
  * @pre lastChangeX must be in [0..1]
  * @pre lastChangeY must be in [0..1]
- * @pre gameResult must point on an allocated GameResult variable
+ * @pre boardGameResult must point on an allocated GameResult variable
  *
  * @return a boolean that tells if the game is finished
  *
@@ -30,7 +33,7 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 	bool stop = false;
 	for (int i = 0; (i < 3) && !stop; i++) {
 		for (int j = 0; (j < 3) && !stop; j++) {
-			if (boardSquares[i][j] == NONE) { stop = true; }
+			if (boardSquares[i][j] == NONE) stop = true;
 		}
 	}
 	if (!stop) {
@@ -71,33 +74,33 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 	}
 }
 
-// void Board_init (SquareChangeCallback onSquareChange, EndOfGameCallback onEndOfGame)
+// void Board_init (SquareChangeCallback boardOnSquareChange, EndOfGameCallback onEndOfGame)
 // {
 //   // TODO: à compléter
 // }
 
 // void Board_free ()
 // {
-//   // TODO: à compléter
+//   // TODO: à compléterm
 // }
 
-PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece,
-                              SquareChangeCallback squareCallback,
-                              EndOfGameCallback endCallback) {
-  PutPieceResult Is_empty;
+PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece)
+{
+	PutPieceResult Is_empty;
 
-  if (Board_getSquareContent(x, y) == NONE) {
-    squareCallback(x, y, kindOfPiece);
-    boardSquares[y][x] = kindOfPiece;
-    if (isGameFinished(boardSquares, x, y, &gameResult))
-      endCallback(gameResult);
-    Is_empty = PIECE_IN_PLACE;
-  } else {
-    Is_empty = SQUARE_IS_NOT_EMPTY;
-  }
-  return Is_empty;
+	if (Board_getSquareContent(x, y) == NONE) {
+		boardSquares[y][x] = kindOfPiece;
+		boardOnSquareChange(x, y, kindOfPiece);
+		if (isGameFinished(boardSquares, x, y, &boardGameResult))
+			boardOnEndOfGame(boardGameResult);
+		Is_empty = PIECE_IN_PLACE;
+	} else {
+		Is_empty = SQUARE_IS_NOT_EMPTY;
+	}
+	return Is_empty;
 }
 
-PieceType Board_getSquareContent(Coordinate x, Coordinate y) {
-  return boardSquares[y][x];
+PieceType Board_getSquareContent(Coordinate x, Coordinate y)
+{
+	return boardSquares[y][x];
 }
