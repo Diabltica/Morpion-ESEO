@@ -7,6 +7,8 @@ set(CMAKE_C_STANDARD 11)
 include_directories(src/etape1
                     src/test_tictactoe)
 
+add_compile_options(-DCONFIG_TEXTUI)
+
 add_executable(Morpion_ESEO
 
         src/etape1/board.c
@@ -22,11 +24,11 @@ add_executable(Morpion_ESEO
         src/etape1/tictactoe_erros.c)#Comment to run unit test
 
 #Uncomment to run unit test
-
-
+#
+#
 #add_executable(Morpio_ESEO
 #               src/etape1/board.c
 #               src/test_tictactoe/main.c
 #               src/test_tictactoe/test_CheckEndOfGame.c
 #               src/test_tictactoe/test_CheckEndOfGame.h)#Uncomment to run unit test
-
+#

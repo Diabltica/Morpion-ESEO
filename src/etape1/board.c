@@ -90,14 +90,12 @@ void Board_init(SquareChangeCallback onSquareChange,
 	boardOnEndOfGame = onEndOfGame;
 }
 
-// void Board_free ()
-// {
-//	 for (int i = 0; i < 3; ++i) {
-//		 for (int j = 0; j < 3; ++j) {
-//			 boardSquares[i][j] = NULL;
-//		 }
-//	 }
-// }
+void Board_free()
+{
+	for (int i = 0; i < LIGNES; ++i) {
+		for (int j = 0; j < COLONNES; ++j) { boardSquares[i][j] = NONE; }
+	}
+}
 
 PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece)
 {
