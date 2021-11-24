@@ -99,9 +99,7 @@ void Board_init(SquareChangeCallback onSquareChange,
 //	 }
 // }
 
-PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece,
-                              SquareChangeCallback squareCallback,
-                              EndOfGameCallback endCallback)
+PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece)
 {
 	PutPieceResult Is_empty;
 
