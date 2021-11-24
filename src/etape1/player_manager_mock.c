@@ -9,25 +9,18 @@
 #include <assert.h>
 #include <stdio.h>
 
-#define CONFIG_PLAYER_MANAGER_MOCK 1 //temporaire
-
 #if defined CONFIG_PLAYER_MANAGER_MOCK
 
-PieceType playerPiece;
+PieceType thisPlayer;
 
-void PlayerManager_init (void)
-{
-	playerPiece = CROSS;
-}
+void PlayerManager_init(void) { thisPlayer = CROSS; }
 
-void PlayerManager_free (void)
-{
-}
+void PlayerManager_free(void) {}
 
-void PlayerManager_oneTurn (void)
+void PlayerManager_oneTurn(void)
 {
 	bool played = false;
-	while(!played){
+	while (!played) {
 		//The player choose a case to play
 		int x;
 		scanf("Which line ? : %d", &x);
@@ -35,27 +28,26 @@ void PlayerManager_oneTurn (void)
 		scanf("Which columne ? : %d", &y);
 
 		//Condition to validate the choice
-		if(!Board_getSquareContent(x,y)){
+		if (!Board_getSquareContent(x, y)) {
 			printf("Error : the case is out. Choose again !");
-		} else if(Board_getSquareContent(x,y) != NONE){
+		} else if (Board_getSquareContent(x, y) != NONE) {
 			printf("Error : the case is already taken. Choose again !");
-		} else{
-			Board_putPiece(x, y, playerPiece);
+		} else {
+			Board_putPiece(x, y, thisPlayer);
 			played = true;
 		}
 	}
 	//next player
-	switch(playerPiece){
+	switch (thisPlayer) {
 		case CROSS:
-			playerPiece = CIRCLE;
+			thisPlayer = CIRCLE;
 			break;
 		case CIRCLE:
-			playerPiece = CROSS;
+			thisPlayer = CROSS;
 			break;
 		default:
 			printf("Error during change of player.");
 	}
-
 }
 
-#endif //  #if defined CONFIG_PLAYER_MANAGER_MOCK
+#endif//  #if defined CONFIG_PLAYER_MANAGER_MOCK
