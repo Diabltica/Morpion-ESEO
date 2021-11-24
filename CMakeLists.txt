@@ -7,7 +7,8 @@ set(CMAKE_C_STANDARD 11)
 include_directories(src/etape1
                     src/test_tictactoe)
 
-add_compile_options(-DCONFIG_TEXTUI)
+add_compile_definitions(CONFIG_TEXTUI=1)
+add_compile_definitions(CONFIG_PLAYER_MANAGER_MOCK=1)
 
 add_executable(Morpion_ESEO
 
