@@ -1,7 +1,11 @@
 #include "board.h"
+#include <gif_lib.h>
 #include <stdbool.h>
 
-PieceType boardSquares[3][3];
+#define LIGNES 3
+#define COLONNES 3
+
+PieceType boardSquares[LIGNES][COLONNES];
 SquareChangeCallback boardOnSquareChange;
 EndOfGameCallback boardOnEndOfGame;
 GameResult boardGameResult;
@@ -31,9 +35,10 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 
 	//check if the board is full
 	bool stop = false;
-	for (int i = 0; (i < 3) && !stop; i++) {
-		for (int j = 0; (j < 3) && !stop; j++) {
-			if (boardSquares[i][j] == NONE) stop = true;
+
+	for (int i = 0; (i < LIGNES) && !stop; i++) {
+		for (int j = 0; (j < COLONNES) && !stop; j++) {
+			if (boardSquares[i][j] == NONE) { stop = true; }
 		}
 	}
 	if (!stop) {
@@ -74,17 +79,29 @@ static bool isGameFinished(const PieceType boardSquares[3][3],
 	}
 }
 
-// void Board_init (SquareChangeCallback boardOnSquareChange, EndOfGameCallback onEndOfGame)
-// {
-//   // TODO: à compléter
-// }
+
+void Board_init(SquareChangeCallback onSquareChange,
+                EndOfGameCallback onEndOfGame)
+{
+	for (int i = 0; i < LIGNES; ++i) {
+		for (int j = 0; j < COLONNES; ++j) { boardSquares[i][j] = NONE; }
+	}
+	boardOnSquareChange = onSquareChange;
+	boardOnEndOfGame = onEndOfGame;
+}
 
 // void Board_free ()
 // {
-//   // TODO: à compléterm
+//	 for (int i = 0; i < 3; ++i) {
+//		 for (int j = 0; j < 3; ++j) {
+//			 boardSquares[i][j] = NULL;
+//		 }
+//	 }
 // }
 
-PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece)
+PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece,
+                              SquareChangeCallback squareCallback,
+                              EndOfGameCallback endCallback)
 {
 	PutPieceResult Is_empty;
 
