@@ -2,6 +2,8 @@
 #include <assert.h>
 #include <stdio.h>
 
+#define CONFIG_TEXTUI 1
+
 #if defined CONFIG_TEXTUI
 
 void BoardView_init (void)
@@ -14,7 +16,11 @@ void BoardView_free (void)
 
 void BoardView_displayAll (void)
 {
-  // TODO: à compléter
+	for (int i = 0; i < LIGNES; ++i) {
+		for (int j = 0; j < COLONNES; ++j) {
+
+		}
+	}
 }
 
 void BoardView_displaySquare (Coordinate x, Coordinate y, PieceType kindOfPiece)
@@ -24,17 +30,16 @@ void BoardView_displaySquare (Coordinate x, Coordinate y, PieceType kindOfPiece)
 
 void BoardView_displayEndOfGame (GameResult result)
 {
-  // TODO: à compléter
+  printf('The game is finished : %c', result);
 }
 
 void BoardView_displayPlayersTurn (PieceType thisPlayer)
 {
-  // TODO: à compléter
 }
 
 void BoardView_sayCannotPutPiece (void)
 {
-  // TODO: à compléter
+  printf('You can\'t put any piece in this case. Please, choose another.');
 }
 
 #endif // defined CONFIG_TEXTUI
