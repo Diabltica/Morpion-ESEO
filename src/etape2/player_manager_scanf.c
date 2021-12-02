@@ -36,6 +36,8 @@ void PlayerManager_oneTurn (void)
 		getchar();
 	}while(error != 1 || row > 50 || row < 48);
 
+	int x = row - 48; //on retrouve le nombre entier
+
 	//comparaison avec le code ASCII
 	do{
 		printf("Wich columne ? ");
@@ -43,8 +45,10 @@ void PlayerManager_oneTurn (void)
 		getchar();
 	}while(error != 1 || col > 50 || col < 48);
 
+	int y = col - 48;
+
 	//Put piece on board
-	Board_putPiece(row,col,thisPlayer);
+	Board_putPiece(x,y,thisPlayer);
 
 	//next player
 	switch (thisPlayer) {
