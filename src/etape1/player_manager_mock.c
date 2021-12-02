@@ -19,24 +19,33 @@ void PlayerManager_free(void) {}
 
 void PlayerManager_oneTurn(void)
 {
-	bool played = false;
-	while (!played) {
-		//The player choose a case to play
-		int x;
-		scanf("Which line ? : %d", &x);
-		int y;
-		scanf("Which columne ? : %d", &y);
+//	bool played = false;
+//	while (!played) {
+//		//The player choose a case to play
+//		int x;
+//		scanf("Which line ? : %d", &x);
+//		int y;
+//		scanf("Which columne ? : %d", &y);
+//
+//		//Condition to validate the choice
+//		if (!Board_getSquareContent(x, y)) {
+//			printf("Error : the case is out. Choose again !");
+//		} else if (Board_getSquareContent(x, y) != NONE) {
+//			printf("Error : the case is already taken. Choose again !");
+//		} else {
+//			Board_putPiece(x, y, thisPlayer);
+//			played = true;
+//		}
+//	}
+	//Coordinates choices
+	int x;
+	scanf("Which line ? : %d", &x);
+	int y;
+	scanf("Which columne ? : %d", &y);
 
-		//Condition to validate the choice
-		if (!Board_getSquareContent(x, y)) {
-			printf("Error : the case is out. Choose again !");
-		} else if (Board_getSquareContent(x, y) != NONE) {
-			printf("Error : the case is already taken. Choose again !");
-		} else {
-			Board_putPiece(x, y, thisPlayer);
-			played = true;
-		}
-	}
+	//Put piece on board
+	Board_putPiece(x,y,thisPlayer);
+
 	//next player
 	switch (thisPlayer) {
 		case CROSS:

@@ -5,23 +5,39 @@
  * @author jilias
  */
 
-#include "player_manager.h"
-#include "board_view.h"
 #include "board.h"
+#include "board_view.h"
+#include "player_manager.h"
 
+bool TemoinFinPartie;
 
-
-void Game_init (void)
+void Game_SquareChangeCallback(Coordinate x, Coordinate y,
+                               PieceType kindOfPiece)
 {
-  // TODO: initialiser tous les modules
+	BoardView_displaySquare(x, y, kindOfPiece);
 }
 
-void Game_free (void)
+void Game_EndOfGameCallback() { TemoinFinPartie = true; }
+
+void Game_init(void)
 {
-  // TODO: libérer tous les modules
+	TemoinFinPartie = false;
+	Board_init(Game_SquareChangeCallback, Game_EndOfGameCallback);
+	BoardView_init();
+	PlayerManager_init();
 }
 
-void Game_loop (void)
+void Game_free(void)
 {
-	// TODO: à compléter
+	BoardView_free();
+	PlayerManager_free();
+	Board_free();
+}
+
+void Game_loop(void)
+{
+	bool isEnded = false;
+	do {
+		PlayerManager_oneTurn();
+	} while (!isEnded);
 }
