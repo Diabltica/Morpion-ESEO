@@ -44,6 +44,7 @@ void BoardView_displayAll(void)
 		for (int j = 0; j < 5; j++) { printf("%c", boardDisplay[i][j]); }
 		printf("\n");
 	}
+	printf("\n\n");
 }
 
 void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)

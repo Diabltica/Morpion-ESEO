@@ -40,8 +40,7 @@ void Game_free(void)
 
 void Game_loop(void)
 {
-	do{
+	do {
 		PlayerManager_oneTurn();
-
 	}while(!TemoinFinPartie);
 }

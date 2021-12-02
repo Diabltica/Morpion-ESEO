@@ -12,22 +12,24 @@
 #if defined CONFIG_PLAYER_MANAGER_MOCK
 
 PieceType thisPlayer;
+int i;
 
-void PlayerManager_init(void) { thisPlayer = CROSS; }
+void PlayerManager_init(void)
+{
+	thisPlayer = CROSS;
+	i = 0;
+}
 
 void PlayerManager_free(void) {}
 
 void PlayerManager_oneTurn(void)
 {
 	//Coordinates choices
-	char x;
-	int y;
-	printf("x ?");
-	scanf("%d", &x);
-	printf("y ?");
-	scanf("%d", &y);
-	//Put piece on board
-	Board_putPiece(x, y, thisPlayer);
+	int test_x[5] = {1, 0, 1, 0, 1};
+	int test_y[5] = {0, 0, 1, 1, 2};
+
+
+	Board_putPiece(test_x[i], test_y[i], thisPlayer);
 
 	//next player
 	switch (thisPlayer) {
@@ -40,7 +42,7 @@ void PlayerManager_oneTurn(void)
 		default:
 			printf("Error during change of player.");
 	}
-
+	i++;
 }
 
 #endif//  #if defined CONFIG_PLAYER_MANAGER_MOCK
