@@ -24,9 +24,12 @@ void PlayerManager_free(void) {}
 
 void PlayerManager_oneTurn(void)
 {
-	//Coordinates choices
-	int test_x[5] = {1, 0, 1, 0, 1};
-	int test_y[5] = {0, 0, 1, 1, 2};
+	//Circle Win test set
+	int test_x[6] = {0, 1, 0, 1, 2, 1};
+	int test_y[6] = {0, 0, 1, 1, 2, 2};
+	//Draw Test set
+//	int test_x[9] = {0,0,1,2,1,0,2,1,2};
+//	int test_y[9] = {1,0,0,1,1,2,0,2,2};
 
 
 	Board_putPiece(test_x[i], test_y[i], thisPlayer);
