@@ -97,7 +97,8 @@ void Board_free()
 	}
 }
 
-PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType kindOfPiece)
+PutPieceResult Board_putPiece(Coordinate x, Coordinate y, PieceType
+                                                                    kindOfPiece)
 {
 	PutPieceResult Is_empty;
 

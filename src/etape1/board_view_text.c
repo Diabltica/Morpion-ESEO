@@ -40,9 +40,7 @@ void BoardView_free(void)
 
 void BoardView_displayAll(void)
 {
-	system("cls");
-
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 5; j++) { printf("%c", boardDisplay[i][j]); }
 		printf("\n");
 	}
@@ -68,11 +66,10 @@ void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)
 
 void BoardView_displayEndOfGame(GameResult result)
 {
-	system("cls");
 	if (result == CIRCLE_WINS) {
-		printf("Circle Wins");
+		printf("Circle Wins\n");
 	} else {
-		printf("Cross Wins");
+		printf("Cross Wins\n");
 	}
 	printf("  ________  ________                                .__        \n"
 	       " /  _____/ /  _____/   ___.__. ____  __ __  __  _  _|__| ____  \n"
