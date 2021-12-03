@@ -8,7 +8,9 @@ include_directories(src/etape1
                     src/test_tictactoe)
 
 add_compile_definitions(CONFIG_TEXTUI=1)
-add_compile_definitions(CONFIG_PLAYER_MANAGER_MOCK=1)
+add_compile_definitions(CONFIG_PLAYER_MANAGER_MOCK=0)
+add_compile_definitions(CONFIG_PLAYER_MANAGER_SCANF=1)
+
 
 add_executable(Morpion_ESEO
 
@@ -20,7 +22,8 @@ add_executable(Morpion_ESEO
         src/etape1/game.h
         src/etape1/main.c
         src/etape1/player_manager.h
-        src/etape1/player_manager_mock.c
+#        src/etape1/player_manager_mock.c
+        src/etape2/player_manager_scanf.c
         src/etape1/tictactoe_errors.h
         src/etape1/tictactoe_erros.c)#Comment to run unit test
 
