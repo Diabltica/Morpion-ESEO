@@ -36,6 +36,8 @@ void PlayerManager_oneTurn (void)
 
 	do
 	{
+		BoardView_displayAll();
+
 		validMove = false;
 		error = SDL_WaitEvent (&event);
 		assert (error == 1);

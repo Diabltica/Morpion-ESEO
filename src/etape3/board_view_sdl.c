@@ -51,13 +51,13 @@ void BoardView_init (void)
 		}
 
 		// Loads images
-		BackgroundImage = IMG_Load ("background.png");
+		BackgroundImage = IMG_Load ("../src/etape3/background.png");
 		if (BackgroundImage == NULL)
 					fatalError(IMG_GetError ());
-		SpriteO = IMG_Load ("sprite_O.png");
+		SpriteO = IMG_Load ("../src/etape3/sprite_O.png");
 		if (SpriteO == NULL)
 					fatalError(IMG_GetError ());
-		SpriteX = IMG_Load ("sprite_X.png");
+		SpriteX = IMG_Load ("../src/etape3/sprite_X.png");
 		if (SpriteX == NULL)
 			fatalError(IMG_GetError ());
 
@@ -92,6 +92,7 @@ void BoardView_displayAll (void)
 	/* utiliser "renderImage" pour afficher l'image de fond "BackgroundImage",
 	 * puis afficher l'ensemble des cases à l'aide de la fonction BoardView_displaySquare
 	 */
+	renderImage(BackgroundImage,0,0);
 }
 
 void BoardView_displaySquare (Coordinate x, Coordinate y, PieceType kindOfPiece)
