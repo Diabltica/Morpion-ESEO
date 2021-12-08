@@ -21,7 +21,7 @@ add_executable(Morpion_ESEO
         src/etape1/main.c
         src/etape1/player_manager.h
         src/etape2/player_manager_scanf.c
-        #        src/etape1/player_manager_mock.c
+#        src/etape1/player_manager_mock.c
         src/etape1/tictactoe_errors.h
         src/etape1/tictactoe_erros.c
         src/etape3/board_view_sdl.c

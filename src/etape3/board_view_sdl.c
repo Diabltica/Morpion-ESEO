@@ -78,16 +78,17 @@ void BoardView_displayAll(void)
 	/* utiliser "renderImage" pour afficher l'image de fond "BackgroundImage",
 	 * puis afficher l'ensemble des cases à l'aide de la fonction BoardView_displaySquare
 	 */
-	printf("Bonjour");
 	PieceType toDisplay;
 	renderImage(BackgroundImage, 0, 0);
-	printf("bonjour");
+
 	for (int i = 0; i < 4; ++i) {
 		for (int j = 0; j < 4; ++j) {
 			toDisplay = Board_getSquareContent(i, j);// get the piece type
-			BoardView_displaySquare(i, j, toDisplay);// Display the piece
+			BoardView_displaySquare(j, i, toDisplay);// Display the piece
 		}
 	}
+	renderImage(BackgroundImage, 0, 0);
+
 }
 
 void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)
@@ -95,12 +96,12 @@ void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)
 	/* utiliser "renderImage" pour afficher le sprite correspondant à kindOfPiece à
 	 * l'endroit correspondant aux coordonnées logiques "x" et "y".
 	 */
-	int displayed_x = (x + 1) * 158;
-	int displayed_y = (y + 1) * 158;
+	int displayed_x = x * 158;
+	int displayed_y = y * 158;
 	if (kindOfPiece == CROSS) {
-		renderImage(SpriteX, displayed_x, displayed_y);
+		renderImage(SpriteX, displayed_y, displayed_x);
 	} else if (kindOfPiece == CIRCLE) {
-		renderImage(SpriteO, displayed_x, displayed_y);
+		renderImage(SpriteO, displayed_y, displayed_x);
 	}
 }
 

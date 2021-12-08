@@ -29,7 +29,7 @@ void PlayerManager_oneTurn (void)
 {
 
 
-   BoardView_displayPlayersTurn(thisPlayer);
+//   BoardView_displayPlayersTurn(thisPlayer);
 
    int x = 0;
    int y = 0;

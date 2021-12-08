@@ -37,9 +37,15 @@ void PlayerManager_oneTurn(void)
 		assert(error == 1);
 		switch (event.type) {
 			case SDL_WINDOWEVENT:
-				// TODO:  Fermeture de la fenêtre = quitter l'application
+				if (event.window.event == SDL_WINDOWEVENT_CLOSE) {
+					validMove = true;
+					BoardView_free();
+				}
 				break;
-				// TODO: à compléter
+			case SDL_MOUSEBUTTONDOWN:
+				Board_putPiece(1,1,CROSS);
+				printf("Bonjour");
+				break;
 		}
 	} while (!validMove);
 }
