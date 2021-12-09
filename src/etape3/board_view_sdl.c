@@ -74,7 +74,7 @@ void BoardView_init(void)
 	// Creates the main renderer
 	MainRenderer = SDL_CreateRenderer(MainWindow, -1, SDL_RENDERER_ACCELERATED);
 	if (MainRenderer == NULL) { fatalError(SDL_GetError()); }
-
+//	renderImage(BackgroundImage, 0, 0);
 }
 
 void BoardView_free(void)
@@ -98,7 +98,7 @@ void BoardView_displayAll(void)
 	/* utiliser "renderImage" pour afficher l'image de fond "BackgroundImage",
 	 * puis afficher l'ensemble des cases à l'aide de la fonction BoardView_displaySquare
 	 */
-	PieceType toDisplay;
+	PieceType toDisplay = NONE;
 	renderImage(BackgroundImage, 0, 0);
 
 	for (int i = 0; i < 4; ++i) {
@@ -127,7 +127,6 @@ void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)
 
 void BoardView_displayEndOfGame(GameResult result)
 {
-	SDL_Delay(200);
 	if (result == DRAW) {
 		renderImage(SpriteDraw, 0, 0);
 	} else {

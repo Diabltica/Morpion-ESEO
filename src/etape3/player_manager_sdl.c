@@ -16,7 +16,8 @@
 extern bool TemoinFinPartie;
 PieceType thisPlayer;
 
-void PlayerManager_init(void) {
+void PlayerManager_init(void)
+{
 	thisPlayer = CROSS;
 	assert(SDL_WasInit(SDL_INIT_VIDEO) != 0);
 }
@@ -26,10 +27,10 @@ void PlayerManager_free(void) {}
 
 static bool tryMove(int x, int y)
 {
-	if(x < 3 && x >= 0 && y < 3 && y >= 0){
-		if(Board_putPiece(x,y, thisPlayer) == PIECE_IN_PLACE){
+	if (x < 3 && x >= 0 && y < 3 && y >= 0) {
+		if (Board_putPiece(x, y, thisPlayer) == PIECE_IN_PLACE) {
 			return true;
-		} else{
+		} else {
 			BoardView_sayCannotPutPiece();
 			return false;
 		}
@@ -42,6 +43,8 @@ void PlayerManager_oneTurn(void)
 	SDL_Event event;
 	bool validMove;
 	int xMouse, yMouse;
+
+	BoardView_displayPlayersTurn(thisPlayer);
 	BoardView_displayAll();
 
 	do {
@@ -58,10 +61,10 @@ void PlayerManager_oneTurn(void)
 				}
 				break;
 			case SDL_MOUSEBUTTONDOWN:
-				SDL_GetMouseState(&xMouse,&yMouse);
+				SDL_GetMouseState(&xMouse, &yMouse);
 				xMouse = xMouse / 158;
 				yMouse = yMouse / 158;
-				validMove = tryMove(xMouse,yMouse);
+				validMove = tryMove(xMouse, yMouse);
 				BoardView_displayAll();
 				break;
 		}
@@ -76,9 +79,6 @@ void PlayerManager_oneTurn(void)
 			break;
 		default:
 			printf("Error during change of player.");
-	}
-	if(!TemoinFinPartie){
-		BoardView_displayPlayersTurn(thisPlayer);
 	}
 
 }
