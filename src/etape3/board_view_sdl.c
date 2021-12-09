@@ -19,6 +19,11 @@ static SDL_Renderer *MainRenderer;
 static SDL_Surface *BackgroundImage;
 static SDL_Surface *SpriteO;
 static SDL_Surface *SpriteX;
+static SDL_Surface *SpriteWin;
+static SDL_Surface *SpriteNo;
+static SDL_Surface *SpriteOturn;
+static SDL_Surface *SpriteXturn;
+static SDL_Surface *SpriteDraw;
 
 static void renderImage(SDL_Surface *image, int x, int y)
 {
@@ -51,7 +56,16 @@ void BoardView_init(void)
 	if (SpriteO == NULL) fatalError(IMG_GetError());
 	SpriteX = IMG_Load("../src/etape3/sprite_X.png");
 	if (SpriteX == NULL) fatalError(IMG_GetError());
-
+	SpriteWin = IMG_Load("../src/etape3/win.png");
+	if (SpriteWin == NULL) fatalError(IMG_GetError());
+	SpriteNo = IMG_Load("../src/etape3/no.png");
+	if (SpriteNo == NULL) fatalError(IMG_GetError());
+	SpriteOturn = IMG_Load("../src/etape3/Circle_turn.png");
+	if (SpriteOturn == NULL) fatalError(IMG_GetError());
+	SpriteXturn = IMG_Load("../src/etape3/Cross_turn.png");
+	if (SpriteXturn == NULL) fatalError(IMG_GetError());
+	SpriteDraw = IMG_Load("../src/etape3/draw.png");
+	if (SpriteDraw == NULL) fatalError(IMG_GetError());
 	// Creates the window
 	MainWindow = SDL_CreateWindow("Tic Tac Toe", SDL_WINDOWPOS_UNDEFINED,
 	                              SDL_WINDOWPOS_UNDEFINED, 480, 480, 0);
@@ -60,6 +74,7 @@ void BoardView_init(void)
 	// Creates the main renderer
 	MainRenderer = SDL_CreateRenderer(MainWindow, -1, SDL_RENDERER_ACCELERATED);
 	if (MainRenderer == NULL) { fatalError(SDL_GetError()); }
+
 }
 
 void BoardView_free(void)
@@ -68,6 +83,11 @@ void BoardView_free(void)
 	SDL_DestroyWindow(MainWindow);
 	SDL_FreeSurface(SpriteX);
 	SDL_FreeSurface(SpriteO);
+	SDL_FreeSurface(SpriteWin);
+	SDL_FreeSurface(SpriteNo);
+	SDL_FreeSurface(SpriteOturn);
+	SDL_FreeSurface(SpriteXturn);
+	SDL_FreeSurface(SpriteDraw);
 	SDL_FreeSurface(BackgroundImage);
 	IMG_Quit();
 	SDL_Quit();
@@ -85,10 +105,9 @@ void BoardView_displayAll(void)
 		for (int j = 0; j < 4; ++j) {
 			toDisplay = Board_getSquareContent(i, j);// get the piece type
 			BoardView_displaySquare(j, i, toDisplay);// Display the piece
+			SDL_Delay(1);
 		}
 	}
-	renderImage(BackgroundImage, 0, 0);
-
 }
 
 void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)
@@ -98,6 +117,7 @@ void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)
 	 */
 	int displayed_x = x * 158;
 	int displayed_y = y * 158;
+
 	if (kindOfPiece == CROSS) {
 		renderImage(SpriteX, displayed_y, displayed_x);
 	} else if (kindOfPiece == CIRCLE) {
@@ -107,18 +127,29 @@ void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)
 
 void BoardView_displayEndOfGame(GameResult result)
 {
+	SDL_Delay(200);
+	if (result == DRAW) {
+		renderImage(SpriteDraw, 0, 0);
+	} else {
+		renderImage(SpriteWin, 0, 0);
+	}
 	SDL_Delay(2000);
-	// TODO: vous pouvez améliorer ceci (lorsque le reste fonctionnera)
 }
 
 void BoardView_displayPlayersTurn(PieceType thisPlayer)
 {
-	// TODO: vous pouvez améliorer ceci (lorsque le reste fonctionnera)
+	if (thisPlayer == CROSS) {
+		renderImage(SpriteXturn, 0, 0);
+	} else {
+		renderImage(SpriteOturn, 0, 0);
+	}
+	SDL_Delay(200);
 }
 
 void BoardView_sayCannotPutPiece(void)
 {
-	// TODO: vous pouvez améliorer ceci (lorsque le reste fonctionnera)
+	renderImage(SpriteNo, 0, 0);
+	SDL_Delay(200);
 }
 
 #endif// defined CONFIG_SDLUI

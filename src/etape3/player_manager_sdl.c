@@ -42,6 +42,7 @@ void PlayerManager_oneTurn(void)
 	SDL_Event event;
 	bool validMove;
 	int xMouse, yMouse;
+	BoardView_displayAll();
 
 	do {
 
@@ -61,9 +62,9 @@ void PlayerManager_oneTurn(void)
 				xMouse = xMouse / 158;
 				yMouse = yMouse / 158;
 				validMove = tryMove(xMouse,yMouse);
+				BoardView_displayAll();
 				break;
 		}
-		BoardView_displayAll();
 	} while (!validMove);
 
 	switch (thisPlayer) {
@@ -75,6 +76,9 @@ void PlayerManager_oneTurn(void)
 			break;
 		default:
 			printf("Error during change of player.");
+	}
+	if(!TemoinFinPartie){
+		BoardView_displayPlayersTurn(thisPlayer);
 	}
 
 }
