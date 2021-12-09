@@ -8,8 +8,8 @@ include_directories(src/etape1
         src/test_tictactoe)
 
 add_compile_definitions(CONFIG_SDLUI=1)
-add_compile_definitions(CONFIG_PLAYER_MANAGER_SCANF=1)
-add_compile_definitions(CONFIG_PLAYER_MANAGER_SDL=0)
+add_compile_definitions(CONFIG_PLAYER_MANAGER_SCANF=0)
+add_compile_definitions(CONFIG_PLAYER_MANAGER_SDL=1)
 
 add_executable(Morpion_ESEO
         src/etape1/board.c
@@ -20,12 +20,12 @@ add_executable(Morpion_ESEO
         src/etape1/game.h
         src/etape1/main.c
         src/etape1/player_manager.h
-        src/etape2/player_manager_scanf.c
+#        src/etape2/player_manager_scanf.c
 #        src/etape1/player_manager_mock.c
         src/etape1/tictactoe_errors.h
         src/etape1/tictactoe_erros.c
         src/etape3/board_view_sdl.c
-#        src/etape3/player_manager_sdl.c
+        src/etape3/player_manager_sdl.c
         )#Comment to run unit test
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")

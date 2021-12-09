@@ -13,9 +13,12 @@
 
 #if defined CONFIG_PLAYER_MANAGER_SDL
 
+extern bool TemoinFinPartie;
+
 void PlayerManager_init(void) { assert(SDL_WasInit(SDL_INIT_VIDEO) != 0); }
 
 void PlayerManager_free(void) {}
+
 
 static bool tryMove(int x, int y)
 {
@@ -39,12 +42,12 @@ void PlayerManager_oneTurn(void)
 			case SDL_WINDOWEVENT:
 				if (event.window.event == SDL_WINDOWEVENT_CLOSE) {
 					validMove = true;
-					BoardView_free();
+					TemoinFinPartie = true;
 				}
 				break;
 			case SDL_MOUSEBUTTONDOWN:
 				Board_putPiece(1,1,CROSS);
-				printf("Bonjour");
+//				printf("Bonjour");
 				break;
 		}
 	} while (!validMove);
