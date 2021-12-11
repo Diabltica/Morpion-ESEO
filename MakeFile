@@ -1,0 +1,10 @@
+CC:=gcc
+C_SOURCES :=$(wildcard src/etape1/*.c)
+H_SOURCES :=$(wildcard src/etape1/*.h)
+LDFLAGS:= -DCONFIG_PLAYER_MANAGER_MOCK=1 -DCONFIG_TEXTUI=1
+
+.SILENT:all
+
+all:
+	$(CC) $(C_SOURCES) $(H_SOURCES) $(LDFLAGS) -o TicTacToe1
+	./TicTacToe1
