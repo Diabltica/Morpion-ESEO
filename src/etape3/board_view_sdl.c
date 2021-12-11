@@ -5,8 +5,8 @@
  * @author jilias
  */
 
-#include "../etape1/board_view.h"
-#include "../etape1/tictactoe_errors.h"
+#include "board_view.h"
+#include "tictactoe_errors.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <assert.h>
