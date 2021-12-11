@@ -5,8 +5,8 @@
  * @author jilias
  */
 
-#include "board.h"
-#include "board_view.h"
+#include "../etape1/board.h"
+#include "../etape1/board_view.h"
 #include <SDL.h>
 #include <assert.h>
 #include <stdbool.h>
