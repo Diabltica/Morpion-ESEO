@@ -1,5 +1,4 @@
 #include "board.h"
-#include <gif_lib.h>
 #include <stdbool.h>
 
 #define LIGNES 3
