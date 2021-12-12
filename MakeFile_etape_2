@@ -4,10 +4,7 @@ H_SOURCES :=$(wildcard src/etape1/*.h)
 C_EXECUTABLE :=$(C_SOURCES:.c=)
 LDFLAGS:= -DCONFIG_PLAYER_MANAGER_SCANF=1 -DCONFIG_TEXTUI=1
 
-
-
-#
-#.SILENT: all
+.SILENT: all
 
 all:
 	$(CC) $(C_SOURCES) $(H_SOURCES) $(LDFLAGS) -o TicTacToe2
