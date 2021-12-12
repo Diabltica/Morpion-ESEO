@@ -5,8 +5,8 @@
  * @author jilias
  */
 
-#include "board_view.h"
-#include "tictactoe_errors.h"
+#include "../etape1/board_view.h"
+#include "../etape1/tictactoe_errors.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <assert.h>
@@ -50,21 +50,21 @@ void BoardView_init(void)
 	if (initted != IMG_INIT_PNG) { fatalError(IMG_GetError()); }
 
 	// Loads images
-	BackgroundImage = IMG_Load("../src/etape3/background.png");
+	BackgroundImage = IMG_Load("src/etape3/background.png");
 	if (BackgroundImage == NULL) fatalError(IMG_GetError());
-	SpriteO = IMG_Load("../src/etape3/sprite_O.png");
+	SpriteO = IMG_Load("src/etape3/sprite_O.png");
 	if (SpriteO == NULL) fatalError(IMG_GetError());
-	SpriteX = IMG_Load("../src/etape3/sprite_X.png");
+	SpriteX = IMG_Load("src/etape3/sprite_X.png");
 	if (SpriteX == NULL) fatalError(IMG_GetError());
-	SpriteWin = IMG_Load("../src/etape3/win.png");
+	SpriteWin = IMG_Load("src/etape3/win.png");
 	if (SpriteWin == NULL) fatalError(IMG_GetError());
-	SpriteNo = IMG_Load("../src/etape3/no.png");
+	SpriteNo = IMG_Load("src/etape3/no.png");
 	if (SpriteNo == NULL) fatalError(IMG_GetError());
-	SpriteOturn = IMG_Load("../src/etape3/Circle_turn.png");
+	SpriteOturn = IMG_Load("src/etape3/Circle_turn.png");
 	if (SpriteOturn == NULL) fatalError(IMG_GetError());
-	SpriteXturn = IMG_Load("../src/etape3/Cross_turn.png");
+	SpriteXturn = IMG_Load("src/etape3/Cross_turn.png");
 	if (SpriteXturn == NULL) fatalError(IMG_GetError());
-	SpriteDraw = IMG_Load("../src/etape3/draw.png");
+	SpriteDraw = IMG_Load("src/etape3/draw.png");
 	if (SpriteDraw == NULL) fatalError(IMG_GetError());
 	// Creates the window
 	MainWindow = SDL_CreateWindow("Tic Tac Toe", SDL_WINDOWPOS_UNDEFINED,
