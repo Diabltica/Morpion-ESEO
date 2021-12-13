@@ -6,7 +6,6 @@
  */
 
 #include "game.h"
-#include <stdio.h>
 int main (void)
 {
 	Game_init ();
