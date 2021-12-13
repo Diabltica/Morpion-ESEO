@@ -42,5 +42,7 @@ void Game_loop(void)
 {
 	do {
 		PlayerManager_oneTurn();
-	}while(!TemoinFinPartie);
+
+	} while (!TemoinFinPartie);
+
 }

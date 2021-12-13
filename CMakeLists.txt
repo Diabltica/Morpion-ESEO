@@ -7,9 +7,13 @@ set(CMAKE_C_STANDARD 11)
 include_directories(src/etape1
         src/test_tictactoe)
 
+add_compile_definitions(CONFIG_TEXTUI=1)
+add_compile_definitions(CONFIG_PLAYER_MANAGER_MOCK=0)
+
 add_compile_definitions(CONFIG_SDLUI=1)
 add_compile_definitions(CONFIG_PLAYER_MANAGER_SCANF=0)
 add_compile_definitions(CONFIG_PLAYER_MANAGER_SDL=1)
+
 
 add_executable(Morpion_ESEO
         src/etape1/board.c
@@ -20,6 +24,7 @@ add_executable(Morpion_ESEO
         src/etape1/game.h
         src/etape1/main.c
         src/etape1/player_manager.h
+        src/etape2/player_manager_scanf.c
 #        src/etape2/player_manager_scanf.c
 #        src/etape1/player_manager_mock.c
         src/etape1/tictactoe_errors.h
