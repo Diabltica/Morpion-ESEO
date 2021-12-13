@@ -1,7 +1,8 @@
 #include "board_view.h"
-#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+int isPlayerMock = 0;
 
 #if defined CONFIG_TEXTUI
 
@@ -19,7 +20,9 @@ char boardDisplay[9][5] = {
 
 void BoardView_init(void)
 {
-	clear();
+	#ifndef CONFIG_PLAYER_MANAGER_MOCK
+		clear();
+	#endif
 	for (int i = 0; i < 3; ++i) {
 		for (int j = 0; j < 3; ++j) {
 			boardSquares[i][j] = Board_getSquareContent(i, j);
@@ -42,7 +45,9 @@ void BoardView_free(void)
 void BoardView_displayAll(void)
 {
 
-	clear();
+	#ifndef CONFIG_PLAYER_MANAGER_MOCK
+		clear();
+	#endif
 
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 5; j++) { printf("%c", boardDisplay[i][j]); }
@@ -72,7 +77,9 @@ void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)
 void BoardView_displayEndOfGame(GameResult result)
 {
 
-	clear();
+	#ifndef CONFIG_PLAYER_MANAGER_MOCK
+		clear();
+	#endif
 	BoardView_displayAll();
 	bool is_draw = false;
 	if (result == CIRCLE_WINS) {
