@@ -1,9 +1,9 @@
 /**
- * @file player_manager_scanf.c
- *
- * @date 7 oct. 2016
- * @author jilias
- */
+* @file player_manager_scanf.c
+*
+* @date 7 oct. 2016
+* @author jilias
+*/
 
 #include "../etape1/board.h"
 #include "../etape1/board_view.h"
@@ -27,7 +27,6 @@ void PlayerManager_free (void)
 
 void PlayerManager_oneTurn (void)
 {
-
 
 	BoardView_displayPlayersTurn(thisPlayer);
 
@@ -61,6 +60,7 @@ void PlayerManager_oneTurn (void)
 			printf("Error during change of player.");
 	}
 
+
 }
 
 void Player_interaction(int* x, int* y){
@@ -85,6 +85,7 @@ void Player_interaction(int* x, int* y){
 	}while(error != 1 || col > 50 || col < 48);
 
 	*y = col - 48;
+
 }
 
 #endif // defined CONFIG_PLAYER_MANAGER_SCANF

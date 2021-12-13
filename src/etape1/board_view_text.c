@@ -41,11 +41,14 @@ void BoardView_free(void)
 
 void BoardView_displayAll(void)
 {
+
 	clear();
+
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 5; j++) { printf("%c", boardDisplay[i][j]); }
 		printf("\n");
 	}
+	printf("\n\n");
 }
 
 void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)
@@ -68,6 +71,7 @@ void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)
 
 void BoardView_displayEndOfGame(GameResult result)
 {
+
 	clear();
 	BoardView_displayAll();
 	bool is_draw = false;
@@ -85,6 +89,7 @@ void BoardView_displayEndOfGame(GameResult result)
 		       "        \\/       \\/         \\/      \\/ \n  ");
 	}
 	if(!is_draw){
+
 		printf("  ________  ________                                .__        \n"
 		       " /  _____/ /  _____/   ___.__. ____  __ __  __  _  _|__| ____  \n"
 		       "/   \\  ___/   \\  ___  <   |  |/  _ \\|  |  \\ \\ \\/ \\/ /  |/   "
@@ -94,6 +99,7 @@ void BoardView_displayEndOfGame(GameResult result)
 		       " \\______  /\\______  /  / ____|\\____/|____/    \\/\\_/ |__|___|  "
 		       "/\n"
 		       "        \\/        \\/   \\/                                   "
+
 		       "\\/ \n");
 	}
 }

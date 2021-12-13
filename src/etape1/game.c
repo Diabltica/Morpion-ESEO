@@ -8,7 +8,7 @@
 #include "board.h"
 #include "board_view.h"
 #include "player_manager.h"
-
+#include <stdio.h>
 bool TemoinFinPartie;
 
 void Game_SquareChangeCallback(Coordinate x, Coordinate y,
@@ -42,5 +42,7 @@ void Game_loop(void)
 {
 	do {
 		PlayerManager_oneTurn();
+
 	} while (!TemoinFinPartie);
+
 }

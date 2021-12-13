@@ -6,13 +6,10 @@
  */
 
 #include "game.h"
-
 int main (void)
 {
 	Game_init ();
-
 	Game_loop ();
-
 	Game_free ();
 
 	return 0;
