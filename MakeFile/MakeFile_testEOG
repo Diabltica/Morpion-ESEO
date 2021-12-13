@@ -1,0 +1,9 @@
+CC:=gcc
+C_SOURCES :=$(wildcard ../src/test_tictactoe/*.c)
+H_SOURCES :=$(../src/etape1/board.h ../src/test_tictactoe/test_CheckEndOfGame.h)
+
+.SILENT:all
+
+all:
+	$(CC) $(C_SOURCES) $(H_SOURCES) -o TestEOG
+	./TestEOG
