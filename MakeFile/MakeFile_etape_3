@@ -9,5 +9,5 @@ LDFLAGS:= -DCONFIG_PLAYER_MANAGER_SDL=1 -DCONFIG_SDLUI=1
 .SILENT: all
 
 all:
-	$(CC) -o tictactoe3 $(C_SOURCES) $(H_SOURCES) $(LDFLAGS) -lSDL2_image `sdl2-config --cflags --libs`
-	./tictactoe3 
+	$(CC) -o TicTacToe3 $(C_SOURCES) $(H_SOURCES) $(LDFLAGS) -lSDL2_image `sdl2-config --cflags --libs`
+	./TicTacToe3 
