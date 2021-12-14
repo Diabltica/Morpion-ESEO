@@ -5,11 +5,15 @@ LDFLAGS:= -DCONFIG_PLAYER_MANAGER_MOCK=1 -DCONFIG_TEXTUI=1
 .SILENT:all
 
 all:
-	$(CC) $(C_SOURCES) $(H_SOURCES) $(LDFLAGS) -DDEF_CIRCLE_WINS -o TicTacToe1
-	./TicTacToe1
-
+ifdef CIRCLEWINS
+	$(CC) $(C_SOURCES) $(H_SOURCES) $(LDFLAGS) -DDEF_CIRCLE_WINS -o TicTacToe1	
+	echo "bonjour"
+endif	
+ifdef CROSSWINS
+	echo "hola"
 	$(CC) $(C_SOURCES) $(H_SOURCES) $(LDFLAGS) -DDEF_CROSS_WINS -o TicTacToe1
-	./TicTacToe1
-
+endif
+ifdef DRAW
 	$(CC) $(C_SOURCES) $(H_SOURCES) $(LDFLAGS) -DDEF_DRAW -o TicTacToe1
+endif	
 	./TicTacToe1
