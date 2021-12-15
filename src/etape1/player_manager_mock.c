@@ -11,13 +11,13 @@
 
 #if defined CONFIG_PLAYER_MANAGER_MOCK
 
-PieceType thisPlayer;
-int i;
+PieceType thisPlayer; // to know who need to play
+int i; //variable to browse into test tab
 
 void PlayerManager_init(void)
 {
-	thisPlayer = CROSS;
-	i = 0;
+	thisPlayer = CROSS; // Init the first player
+	i = 0; //start at 0
 }
 
 void PlayerManager_free(void) {}
@@ -30,7 +30,7 @@ void PlayerManager_oneTurn(void)
 	int test_y[6] = {0, 0, 1, 1, 2, 2};
 #endif
 #if defined DEF_CROSS_WINS
-	//Circle Win test set
+	//CROSS Win test set
 	int test_x[5] = {0, 1, 0, 1, 0}; //row
 	int test_y[5] = {0, 0, 1, 1, 2};
 #endif
@@ -41,7 +41,9 @@ void PlayerManager_oneTurn(void)
 #endif
 
 
-	Board_putPiece(test_x[i], test_y[i], thisPlayer);
+	Board_putPiece(test_x[i], test_y[i], thisPlayer); //Put the piece
+	// No need to check if the square is empty because we already decide
+	// all coordinate
 
 	//next player
 	switch (thisPlayer) {
@@ -54,7 +56,7 @@ void PlayerManager_oneTurn(void)
 		default:
 			printf("Error during change of player.");
 	}
-	i++;
+	i++; // go to the next coordinate
 }
 
 #endif//  #if defined CONFIG_PLAYER_MANAGER_MOCK
