@@ -74,7 +74,7 @@ void BoardView_init(void)
 	// Creates the main renderer
 	MainRenderer = SDL_CreateRenderer(MainWindow, -1, SDL_RENDERER_ACCELERATED);
 	if (MainRenderer == NULL) { fatalError(SDL_GetError()); }
-//	renderImage(BackgroundImage, 0, 0);
+	//	renderImage(BackgroundImage, 0, 0);
 }
 
 void BoardView_free(void)
@@ -98,14 +98,15 @@ void BoardView_displayAll(void)
 	/* utiliser "renderImage" pour afficher l'image de fond "BackgroundImage",
 	 * puis afficher l'ensemble des cases à l'aide de la fonction BoardView_displaySquare
 	 */
-	PieceType toDisplay = NONE;
-	renderImage(BackgroundImage, 0, 0);
+	PieceType toDisplay = NONE;        // by default display none
+	renderImage(BackgroundImage, 0, 0);//display background
 
+	//loop to display all square
 	for (int i = 0; i < 4; ++i) {
 		for (int j = 0; j < 4; ++j) {
 			toDisplay = Board_getSquareContent(i, j);// get the piece type
 			BoardView_displaySquare(j, i, toDisplay);// Display the piece
-			SDL_Delay(1);
+			SDL_Delay(1);//little delay avoiding blinking
 		}
 	}
 }
@@ -115,34 +116,34 @@ void BoardView_displaySquare(Coordinate x, Coordinate y, PieceType kindOfPiece)
 	/* utiliser "renderImage" pour afficher le sprite correspondant à kindOfPiece à
 	 * l'endroit correspondant aux coordonnées logiques "x" et "y".
 	 */
-	int displayed_x = x * 158;
-	int displayed_y = y * 158;
+	int displayed_x = x * 158;//display to the right coordinate
+	int displayed_y = y * 158;//display to the right coordinate
 
-	if (kindOfPiece == CROSS) {
-		renderImage(SpriteX, displayed_y, displayed_x);
-	} else if (kindOfPiece == CIRCLE) {
-		renderImage(SpriteO, displayed_y, displayed_x);
+	if (kindOfPiece == CROSS) {                        //if it's a cross
+		renderImage(SpriteX, displayed_y, displayed_x);//display cross
+	} else if (kindOfPiece == CIRCLE) {                //if it's a circle
+		renderImage(SpriteO, displayed_y, displayed_x);//display circle
 	}
 }
 
 void BoardView_displayEndOfGame(GameResult result)
 {
 	if (result == DRAW) {
-		renderImage(SpriteDraw, 0, 0);
+		renderImage(SpriteDraw, 0, 0);//display draw image
 	} else {
-		renderImage(SpriteWin, 0, 0);
+		renderImage(SpriteWin, 0, 0);//display win image
 	}
-	SDL_Delay(2000);
+	SDL_Delay(2000);//delay to see the image
 }
 
 void BoardView_displayPlayersTurn(PieceType thisPlayer)
 {
 	if (thisPlayer == CROSS) {
-		renderImage(SpriteXturn, 0, 0);
+		renderImage(SpriteXturn, 0, 0);//display cross turn image
 	} else {
-		renderImage(SpriteOturn, 0, 0);
+		renderImage(SpriteOturn, 0, 0);//display circle turn image
 	}
-	SDL_Delay(200);
+	SDL_Delay(200);//delay to see the image
 }
 
 void BoardView_sayCannotPutPiece(void)
