@@ -13,7 +13,7 @@
 #if defined CONFIG_PLAYER_MANAGER_SCANF
 
 PieceType thisPlayer;
-void Player_interaction(int* x, int* y);
+void PlayerManager_interaction(int* x, int* y);
 
 void PlayerManager_init (void)
 {
@@ -33,15 +33,15 @@ void PlayerManager_oneTurn (void)
 	int x = 0;
 	int y = 0;
 
-	Player_interaction(&x,&y);
+	PlayerManager_interaction(&x, &y);
 
-	//Put piece on board
+	//Put piece on boardgi
 	bool is_put = false;
 	do{
 		PutPieceResult PieceResult = Board_putPiece(x,y,thisPlayer);
 		if(PieceResult == SQUARE_IS_NOT_EMPTY){
 			BoardView_sayCannotPutPiece();
-			Player_interaction(&x,&y);
+			PlayerManager_interaction(&x, &y);
 		}else if(PieceResult == PIECE_IN_PLACE){
 			is_put = true;
 		}
@@ -63,7 +63,7 @@ void PlayerManager_oneTurn (void)
 
 }
 
-void Player_interaction(int* x, int* y){
+void PlayerManager_interaction(int* x, int* y){
 	int error;
 	char row;
 	char col;
