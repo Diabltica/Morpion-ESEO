@@ -74,7 +74,6 @@ void BoardView_init(void)
 	// Creates the main renderer
 	MainRenderer = SDL_CreateRenderer(MainWindow, -1, SDL_RENDERER_ACCELERATED);
 	if (MainRenderer == NULL) { fatalError(SDL_GetError()); }
-	//	renderImage(BackgroundImage, 0, 0);
 }
 
 void BoardView_free(void)
