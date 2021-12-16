@@ -92,7 +92,7 @@ void BoardView_displayEndOfGame(GameResult result)
 		       " |    |  \\|       _/ /  /_\\  \\   \\/\\/   /\n"
 		       " |    `   \\    |   \\/    |    \\        / \n"
 		       "/_______  /____|_  /\\____|__  /\\__/\\  /  \n"
-		       "        \\/       \\/         \\/      \\/ \n  ");
+		       "        \\/       \\/         \\/      \\/ \n");
 		//display a message
 	}
 	if (!is_draw) {//if it's not a draw
